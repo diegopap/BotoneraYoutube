@@ -31,11 +31,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private static final String KEY = "AIzaSQZZQWQQWMGziK9H_qRxz8g-V6eDL3QW_Us";
 
     private Context context;
-    private ArrayList<String> videos = new ArrayList<>();
+    private ArrayList<String> videos;
     private int playing = -1;
 
     public Adapter(Context context) {
         this.context = context;
+        videos = new TinyDB(context).getListString("videos");
     }
 
     public void setContext(Context context) {
@@ -82,6 +83,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                                     String videoId = editText.getEditableText().toString();
                                     videoId = videoId.substring(videoId.lastIndexOf('/') + 1);
                                     videos.add(videoId);
+                                    new TinyDB(context).putListString("videos", videos);
                                     notifyDataSetChanged();
                                 }
                             })
