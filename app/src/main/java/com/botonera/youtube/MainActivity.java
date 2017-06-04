@@ -14,8 +14,6 @@ public class MainActivity extends YouTubeBaseActivity {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    String[] videos = {"fhWaJi1Hsfo", "fhWaJi1Hsfo"};
-
     private static Adapter adapter;
 
     @Override
@@ -26,7 +24,7 @@ public class MainActivity extends YouTubeBaseActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         if (adapter == null) {
-            adapter = new Adapter(this, videos);
+            adapter = new Adapter(this);
         } else {
             adapter.setContext(this);
         }
